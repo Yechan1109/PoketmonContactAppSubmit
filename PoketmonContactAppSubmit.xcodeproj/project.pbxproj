@@ -75,8 +75,8 @@
 				C7D7F9772C45389100E59CB2 /* AppDelegate.swift */,
 				C7D7F9792C45389100E59CB2 /* SceneDelegate.swift */,
 				C7EE4FB72C47E0CE00B1F50D /* CoraData */,
-				C7EE4FB52C47E09600B1F50D /* PhoneBook */,
-				C7EE4FB62C47E0A700B1F50D /* List */,
+				C7EE4FB52C47E09600B1F50D /* PhoneBookScene */,
+				C7EE4FB62C47E0A700B1F50D /* ListScene */,
 				C7D7F9832C45389300E59CB2 /* Assets.xcassets */,
 				C7D7F9852C45389300E59CB2 /* LaunchScreen.storyboard */,
 				C7D7F9882C45389300E59CB2 /* Info.plist */,
@@ -84,23 +84,23 @@
 			path = PoketmonContactAppSubmit;
 			sourceTree = "<group>";
 		};
-		C7EE4FB52C47E09600B1F50D /* PhoneBook */ = {
+		C7EE4FB52C47E09600B1F50D /* PhoneBookScene */ = {
 			isa = PBXGroup;
 			children = (
 				C7D7F9942C45458500E59CB2 /* PhoneBookView.swift */,
 				C7D7F9922C45456A00E59CB2 /* PhoneBookViewController.swift */,
 			);
-			path = PhoneBook;
+			path = PhoneBookScene;
 			sourceTree = "<group>";
 		};
-		C7EE4FB62C47E0A700B1F50D /* List */ = {
+		C7EE4FB62C47E0A700B1F50D /* ListScene */ = {
 			isa = PBXGroup;
 			children = (
 				C7D7F98E2C45390900E59CB2 /* ListView.swift */,
 				C7D7F97B2C45389100E59CB2 /* ListViewController.swift */,
 				C7D7F9902C453E0100E59CB2 /* ListCell.swift */,
 			);
-			path = List;
+			path = ListScene;
 			sourceTree = "<group>";
 		};
 		C7EE4FB72C47E0CE00B1F50D /* CoraData */ = {

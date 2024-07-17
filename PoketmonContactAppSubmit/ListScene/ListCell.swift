@@ -43,13 +43,7 @@ class ListCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-//        override func layoutSubviews() {
-//               // 테이블 뷰 셀 사이의 간격
-//               super.layoutSubviews()
-//               contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
-//           }
-    
+  
     private func setupView() {
         
         contentView.addSubview(listImage)
@@ -63,10 +57,10 @@ class ListCell: UITableViewCell {
             listImage.widthAnchor.constraint(equalToConstant: 70),
             listImage.heightAnchor.constraint(equalToConstant: 70),
             
-            listName.leadingAnchor.constraint(equalTo: listImage.trailingAnchor, constant: 10),
+            listName.leadingAnchor.constraint(equalTo: listImage.trailingAnchor, constant: 20),
             listName.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             
-            listNumber.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            listNumber.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
             listNumber.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
         ])
     }

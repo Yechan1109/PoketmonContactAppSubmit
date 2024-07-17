@@ -84,7 +84,7 @@ class PhoneBookView: UIView {
         return tf
     }()
     
-    // MARK: - button
+    // MARK: -
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -107,7 +107,7 @@ class PhoneBookView: UIView {
         
         NSLayoutConstraint.activate([
             titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 60),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 65),
             
             setButton.topAnchor.constraint(equalTo: topAnchor, constant: 55),
             setButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),

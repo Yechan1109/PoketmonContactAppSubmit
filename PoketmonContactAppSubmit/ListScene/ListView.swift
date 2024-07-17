@@ -56,7 +56,7 @@ class ListView: UIView {
         
         NSLayoutConstraint.activate([
             titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 100),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 95),
             
             createButton.topAnchor.constraint(equalTo: topAnchor, constant: 95),
             createButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
@@ -69,7 +69,7 @@ class ListView: UIView {
     }
 }
 
-
+var toDoList = "타이틀 라벨, 연락처 추가 버튼 등 라인 맞추기가 귀찮은데.. 다른 방법 찾아보기!!!!!!!!!"
 
 
 

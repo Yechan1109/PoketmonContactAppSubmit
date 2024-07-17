@@ -16,8 +16,6 @@ class ListViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
-        //        let listView = ListView(frame: view.bounds)
-        //        listView.delegate = self
         view = listView
         view.backgroundColor = .systemBackground
     }
@@ -25,30 +23,38 @@ class ListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setAction()
-        setupTableView()
+        listView.tableView.delegate = self
+        listView.tableView.dataSource = self
+        listView.tableView.register(ListCell.self, forCellReuseIdentifier: "cell")
+        
+        btnAction()
         fetchContacts()
     }
     
+    // viewWillAppear에서 fetchContacts() 사용 -> 화면이 나타날 때마다 데이터 reload
+    override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+            fetchContacts()
+        }
     
-    private func setAction() {
-        listView.createButton.addTarget(self, action: #selector(goToCreateTapped), for: .touchUpInside)
-    }
+    // MARK: -
     
     @objc private func goToCreateTapped() {
         let phoneBookViewController = PhoneBookViewController()
         navigationController?.pushViewController(phoneBookViewController, animated: true)
     }
     
-    private func setupTableView() {
-        listView.tableView.delegate = self
-        listView.tableView.dataSource = self
-        listView.tableView.register(ListCell.self, forCellReuseIdentifier: "cell")
+    private func btnAction() {
+        listView.createButton.addTarget(self, action: #selector(goToCreateTapped), for: .touchUpInside)
     }
     
-    private func fetchContacts() {
+    func fetchContacts() {
         let context = CoreDataManager.shared.context
         let fetchRequest: NSFetchRequest<Contact> = Contact.fetchRequest()
+        
+        // 이름 오름차순으로 정렬
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
         
         do {
             contacts = try context.fetch(fetchRequest)
@@ -57,7 +63,6 @@ class ListViewController: UIViewController {
             print("Failed to fetch contacts: \(error)")
         }
     }
-    
 }
 
 extension ListViewController: UITableViewDelegate, UITableViewDataSource {
@@ -67,25 +72,20 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         80
     }
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return contacts.count
     }
-    
-    //    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    //        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-    //        let contact = contacts[indexPath.row]
-    //        cell.textLabel?.text = contact.name
-    //        if let imageData = contact.image {
-    //            cell.imageView?.image = UIImage(data: imageData)
-    //        }
-    //        return cell
-    //    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ListCell
         let contact = contacts[indexPath.row]
         cell.configure(withName: contact.name ?? "", number: contact.number, image: UIImage(data: contact.image ?? Data()))
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let phoneBookViewController = PhoneBookViewController()
+        phoneBookViewController.contact = contacts[indexPath.row] // 선택된 연락처 데이터를 전달
+        navigationController?.pushViewController(phoneBookViewController, animated: true)
     }
 }
