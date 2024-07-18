@@ -128,39 +128,29 @@ class PhoneBookViewController: UIViewController {
 //        return image
 //    }
     
-    
     @objc private func saveAndUpdateTapped() {
-        
         guard let name = phoneBookView.setName.text, !name.isEmpty,
-              
               let number = phoneBookView.setNumber.text, !number.isEmpty,
-              let image = phoneBookView.setImage.image,
-              let imageData = image.pngData() else { return }
-        
-        let context = CoreDataManager.shared.context
-        
-        if let contact = contact {
-            // 기존 연락처 update
-            contact.name = name
-            contact.number = number
-            contact.image = imageData
-        } else {
-            // 새로운 연락처 create
-            let newContact = Contact(context: context)
-            newContact.name = name
-            newContact.number = number
-            newContact.image = imageData
+              let imageData = phoneBookView.setImage.image?.pngData() else {
+            return
         }
+        saveContact(name: name, number: number, imageData: imageData)
+        navigationController?.popViewController(animated: true)
+    }
+
+    private func saveContact(name: String, number: String, imageData: Data) {
+        let context = CoreDataManager.shared.context
+        // contact가 있으면 업데이트하고 nor 새로 만들기
+        let contactToUpdate = contact ?? Contact(context: context)
+        contactToUpdate.name = name
+        contactToUpdate.number = number
+        contactToUpdate.image = imageData
         
         do {
             try context.save()
         } catch {
             print("Failed to save contact: \(error)")
         }
-        
-        // 완료 후 ListView로 이동
-        navigationController?.popViewController(animated: true)
-        
     }
     
     

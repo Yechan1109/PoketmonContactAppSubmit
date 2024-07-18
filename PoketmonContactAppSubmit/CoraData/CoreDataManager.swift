@@ -40,17 +40,5 @@ class CoreDataManager {
             }
         }
     }
-    
-    // 새로운 연락처 저장
-    func saveContact(name: String, number: String, image: UIImage?) {
-        let context = CoreDataManager.shared.context
-        let contact = Contact(context: context)
-        contact.name = name
-        contact.number = number
-        if let image = image, let imageData = image.pngData() { // 이미지는 pngfh 변환 후 저장
-            contact.image = imageData
-        }
-        saveContext()   // 변경사항 저장
-    }
 }
 

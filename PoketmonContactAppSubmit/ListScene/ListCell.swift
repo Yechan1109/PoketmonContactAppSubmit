@@ -50,7 +50,6 @@ class ListCell: UITableViewCell {
         contentView.addSubview(listName)
         contentView.addSubview(listNumber)
         
-        
         NSLayoutConstraint.activate([
             listImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 25),
             listImage.centerYAnchor.constraint(equalTo: centerYAnchor),
