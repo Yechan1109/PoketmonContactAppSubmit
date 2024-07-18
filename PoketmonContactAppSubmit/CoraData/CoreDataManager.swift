@@ -27,6 +27,7 @@ class CoreDataManager {
         return persistentContainer.viewContext
     }
     
+    // 변동사항 저장
     func saveContext() {
         let context = persistentContainer.viewContext
         // context.hasChanges가 true이면 context.save를 통해 변경사항 저장
