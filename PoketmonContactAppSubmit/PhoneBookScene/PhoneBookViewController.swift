@@ -49,7 +49,7 @@ class PhoneBookViewController: UIViewController {
             }
         }
     }
-
+    
     @objc private func fetchPoketmonImageTapped() {
         let randomNum = Int.random(in: 1...1000)
         guard let url = URL(string: "https://pokeapi.co/api/v2/pokemon/\(randomNum)") else {    // url 출력값이 png파일이 아니라 json 형태임!
@@ -92,42 +92,6 @@ class PhoneBookViewController: UIViewController {
         }.resume()  // URLSession의 dataTask 시작
     }
     
-//     Swift 5.5부터 사용가능한 async throws / try await 사용하기 -> 가독성 UP, 비동기 작업 효율 UP
-//    @objc private func fetchPoketmonImageTapped() async throws {
-//        let randomNum = Int.random(in: 1...1000)
-//        guard let url = URL(string: "https://pokeapi.co/api/v2/pokemon/\(randomNum)") else {
-//            print("Invalid URL")
-//            return
-//        }
-//        
-//        // URL에서 데이터를 비동기적으로 가져오기
-//        let (data, _) = try await URLSession.shared.data(from: url)
-//        
-//        // JSON 파싱하여 이미지 URL 추출
-//        guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
-//              let sprites = json["sprites"] as? [String: Any],
-//              let urlString = sprites["front_default"] as? String,
-//              let imageUrl = URL(string: urlString) else {
-//            throw NSError(domain: "JSON parsing error", code: -1, userInfo: nil)
-//        }
-//        
-//        // 이미지 URL에서 이미지를 비동기적으로 로드하여 UIImageView에 설정
-//        let image = try await loadImage(from: imageUrl)
-//        DispatchQueue.main.async {
-//            self.phoneBookView.setImage.image = image
-//            print("\(randomNum)")
-//        }
-//    }
-//
-//    // 이미지를 비동기적으로 로드하는 함수
-//    private func loadImage(from url: URL) async throws -> UIImage {
-//        let (data, _) = try await URLSession.shared.data(from: url)
-//        guard let image = UIImage(data: data) else {
-//            throw NSError(domain: "Image loading error", code: -1, userInfo: nil)
-//        }
-//        return image
-//    }
-    
     @objc private func saveAndUpdateTapped() {
         guard let name = phoneBookView.setName.text, !name.isEmpty,
               let number = phoneBookView.setNumber.text, !number.isEmpty,
@@ -137,7 +101,7 @@ class PhoneBookViewController: UIViewController {
         saveContact(name: name, number: number, imageData: imageData)
         navigationController?.popViewController(animated: true)
     }
-
+    
     private func saveContact(name: String, number: String, imageData: Data) {
         let context = CoreDataManager.shared.context
         // contact가 있으면 업데이트하고 nor 새로 만들기

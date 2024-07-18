@@ -33,9 +33,9 @@ class ListViewController: UIViewController {
     
     // viewWillAppear에서 fetchContacts() 사용 -> 화면이 나타날 때마다 데이터 reload
     override func viewWillAppear(_ animated: Bool) {
-            super.viewWillAppear(animated)
-            fetchContacts()
-        }
+        super.viewWillAppear(animated)
+        fetchContacts()
+    }
     
     // MARK: -
     

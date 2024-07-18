@@ -8,7 +8,7 @@
 import UIKit
 
 class PhoneBookView: UIView {
-
+    
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "연락처 추가"
@@ -57,9 +57,6 @@ class PhoneBookView: UIView {
         tf.font = UIFont.systemFont(ofSize: 18)
         tf.textAlignment = .center
         tf.layer.cornerRadius = 10
-        tf.autocapitalizationType = .none  // 첫 문자 대문자 X
-        tf.autocorrectionType = .no        // 자동완성 X
-        tf.clearsOnBeginEditing = false    // 재사용시 리셋
         let paragraphStyle = NSMutableParagraphStyle()  // placeholder text_align -> center
         paragraphStyle.alignment = .center
         tf.attributedPlaceholder = NSAttributedString(string: "이름을 입력하세요", attributes: [.foregroundColor: UIColor.systemGray, .paragraphStyle: paragraphStyle])
@@ -74,9 +71,6 @@ class PhoneBookView: UIView {
         tf.font = UIFont.systemFont(ofSize: 18)
         tf.textAlignment = .center
         tf.layer.cornerRadius = 10
-        tf.autocapitalizationType = .none  // 첫 문자 대문자 X
-        tf.autocorrectionType = .no        // 자동완성 X
-        tf.clearsOnBeginEditing = false    // 재사용시 리셋
         let paragraphStyle = NSMutableParagraphStyle()  // placeholder text_align -> center
         paragraphStyle.alignment = .center
         tf.attributedPlaceholder = NSAttributedString(string: "전화번호를 입력하세요", attributes: [.foregroundColor: UIColor.systemGray, .paragraphStyle: paragraphStyle])

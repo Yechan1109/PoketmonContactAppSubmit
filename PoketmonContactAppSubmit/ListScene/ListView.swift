@@ -66,11 +66,6 @@ class ListView: UIView {
     }
 }
 
-var toDoList = "타이틀 라벨, 연락처 추가 버튼 등 라인 맞추기가 귀찮은데.. 다른 방법 찾아보기!!!!!!!!!"
-
-
-
-
 
 #Preview {
     ListView()
