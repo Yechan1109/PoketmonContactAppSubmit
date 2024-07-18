@@ -15,8 +15,6 @@ class ListView: UIView {
         return label
     }()
     
-    
-    
     let createButton: UIButton = {
         let button = UIButton()
         button.setTitle("연락처 추가", for:.normal)
@@ -34,7 +32,6 @@ class ListView: UIView {
         tableView.isScrollEnabled = true
         return tableView
     }()
-    
     
     // MARK: - button
     
